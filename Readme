@@ -1,0 +1,52 @@
+Introduction
+This is a project to create a Django based Elevator System for managing the elevators in a building. The project aims to provide an API for the users to interact with the elevators and for the system to manage the requests and status of the elevators.
+
+Design Decisions
+Architecture
+The architecture for the project is a standard Django MVC architecture, with a PostgreSQL database to store the data and Redis cache to improve the performance.
+
+Repository File Structure
+The repository contains the following files and directories:
+
+elevator: This is the main Django app which contains the code for the Elevator System.
+models.py: Contains the database models for the elevators and user requests.
+views.py: Contains the logic for the API views.
+urls.py: Contains the URL patterns for the API endpoints.
+db.sqlite3: This is the default SQLite database. In production, this will be replaced with PostgreSQL.
+manage.py: This is the main management script for the Django project.
+.env: Contains environment variables for the project.
+README.md: This file.
+Database Modelling
+The project uses two models for the database: Elevator and Request.
+
+The Elevator model represents an elevator in the system and has the following fields:
+
+id: A unique identifier for the elevator.
+current_floor: The current floor the elevator is on.
+next_destination_floor: The next floor the elevator is moving to.
+direction: The current direction the elevator is moving in.
+is_working: A boolean flag to indicate whether the elevator is working or not.
+is_door_open: A boolean flag to indicate whether the door is open or closed.
+The Request model represents a user request for an elevator and has the following fields:
+
+id: A unique identifier for the request.
+floor: The floor the user is on.
+direction: The direction the user wants to go in.
+elevator: A foreign key to the Elevator model representing the elevator assigned to the request.
+Plugins or Libraries Used
+The following plugins and libraries are used in the project:
+
+Django: A high-level Python web framework for building web applications.
+PostgreSQL: An open-source relational database management system.
+Redis: An open-source, in-memory data structure store used as a database, cache, and message broker.
+
+API Contracts
+The Elevator System API provides the following API calls:
+
+/api/initialize_elevator_system/<int:n>/: An API call that initializes the elevator system with 'n' elevators.
+
+/api/fetch_all_requests/<int:elevator_id>/: An API call that fetches all requests for a given elevator.
+
+/api/fetch_next_destination/<int:elevator_id>/: An API call that fetches the next destination floor for a given elevator.
+
+/api/fetch_direction/<int:elevator_id>/: An API call that fetches if the elevator is moving up or down currently.
